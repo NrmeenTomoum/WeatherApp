@@ -1,15 +1,19 @@
 # Weather App (Forest design)
 
-UI using swiftUI
+UI using # swiftUI
 
-architecture : clean architecture
+architecture : # clean architecture
   https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
 
  and general considerations
 Exhaustive list of third-parties alongside their respective purposes
 How to build the project
-Any additional notes that can demonstrate your knowledge
+
+
+Any additional notes 
+i used # Combine to bind the view @Observable  
+
 
 
 
