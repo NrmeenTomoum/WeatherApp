@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherView: View {
     var weatherType: WeatherType = .rain
     
     var body: some View {
@@ -63,6 +63,6 @@ extension WeatherType {
 }
 
 #Preview {
-    ContentView()
+    WeatherView()
 }
 
