@@ -12,12 +12,14 @@ struct DailyWeatherRow : View {
     var body: some View {
         HStack {
             Text("\(dailyWeatherModel.name)")
+                .foregroundColor(.white)
             Spacer()
             Image(dailyWeatherModel.weathertype.iconName)
                 .resizable()
                 .frame(width: 30, height: 30)
             Spacer()
             Text("\(dailyWeatherModel.temperature)°")
+                .foregroundColor(.white)
         }
     }
 }

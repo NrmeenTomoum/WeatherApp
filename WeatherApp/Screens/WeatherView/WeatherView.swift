@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherView: View {
     var weatherType: WeatherType = .rain
     
     var body: some View {
@@ -22,7 +22,7 @@ struct ContentView: View {
                                 .font(.system(size: 64, weight: .bold, design: .default))
                                 .foregroundColor(.white)
                             Text("\(weatherType.name)")
-                                .font(.system(size: 64, weight: .regular, design: .default))
+                                .font(.system(size: 32, weight: .regular, design: .default))
                                 .foregroundColor(.white)
                         }
                     }
@@ -38,7 +38,7 @@ struct ContentView: View {
                     .frame(height: 2)
                     .overlay(.white)
                 List (1 ..< 6){ _ in
-                    DailyWeatherRow(dailyWeatherModel: DailyWeatherModel(name: "wednesday", temperature: 20, weathertype: .rain))
+                    DailyWeatherRow(dailyWeatherModel: DailyWeatherModel(name: "wednesday", temperature: 20, weathertype: .sunny))
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
                 }.listStyle(.plain)
@@ -63,6 +63,6 @@ extension WeatherType {
 }
 
 #Preview {
-    ContentView()
+    WeatherView()
 }
 
