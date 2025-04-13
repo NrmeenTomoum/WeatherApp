@@ -2,7 +2,7 @@
 
 UI using # swiftUI
 
-architecture : # clean architecture
+architecture : #clean architecture
   https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
 
@@ -12,7 +12,7 @@ How to build the project
 
 
 Any additional notes 
-i used # Combine to bind the view @Observable  
+i used #Combine to bind the view @Observable  
 
 
 
