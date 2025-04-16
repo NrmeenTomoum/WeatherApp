@@ -8,30 +8,29 @@
 import SwiftUI
 
 struct WeatherView: View {
-    var weatherType: WeatherType = .rain
-    
+    var viewModel: WeatherViewModel = .init()
     var body: some View {
         VStack {
             VStack (alignment: .leading, spacing: 16){
-                Image(weatherType.backgroundpicture)
+                Image(viewModel.weatherType.backgroundpicture)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .overlay{
                         VStack(alignment: .center){
-                            Text("43°")
+                            Text("\(viewModel.currenttemp)°")
                                 .font(.system(size: 64, weight: .bold, design: .default))
                                 .foregroundColor(.white)
-                            Text("\(weatherType.name)")
+                            Text("\(viewModel.weatherType.name)")
                                 .font(.system(size: 32, weight: .regular, design: .default))
                                 .foregroundColor(.white)
                         }
                     }
                 HStack {
-                    TempretureView(labelName: "min", temperature: 25)
+                    TempretureView(labelName: "min", temperature: viewModel.mintemp)
                     Spacer()
-                    TempretureView(labelName: "Current", temperature: 25)
+                    TempretureView(labelName: "Current", temperature: viewModel.currenttemp)
                     Spacer()
-                    TempretureView(labelName: "max", temperature: 25)
+                    TempretureView(labelName: "max", temperature: viewModel.maxtemp)
                 }.padding(.horizontal)
                 
                 Divider()
@@ -43,8 +42,10 @@ struct WeatherView: View {
                         .listRowSeparator(.hidden)
                 }.listStyle(.plain)
                 Spacer()
-            }.background(weatherType.backgroundcolor)
+            }.background(viewModel.weatherType.backgroundcolor)
                 .ignoresSafeArea()
+        }.onAppear(){
+            self.viewModel.fetchWeather()
         }
     }
 }
@@ -58,11 +59,13 @@ extension WeatherType {
             return .cloudyColor
         case .rain:
             return .rainyColor
+        case .none:
+            return .black
         }
     }
 }
 
 #Preview {
-    WeatherView()
+    WeatherView(viewModel: .init())
 }
 

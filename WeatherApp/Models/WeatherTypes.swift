@@ -8,9 +8,10 @@
 import Foundation
 
 enum WeatherType: String, Codable {
-    case sunny
-    case cloudy
-    case rain
+    case sunny = "Clear"
+    case cloudy = "Clouds"
+    case rain = "Rain"
+    case none
 }
 
 extension WeatherType {
@@ -22,8 +23,11 @@ extension WeatherType {
             return "CLOUDY"
         case .rain:
             return "RAINY"
+        case .none:
+            return  "Please add this weather type"
         }
     }
+    
     var iconName: String {
         switch self {
         case .sunny:
@@ -32,6 +36,8 @@ extension WeatherType {
             return "cloudy"
         case .rain:
             return "rainy"
+        case .none:
+            return "Gobal"
         }
     }
     
@@ -43,6 +49,8 @@ extension WeatherType {
             return "forest_cloudy"
         case .rain:
             return "forest_rainy"
+        case .none:
+            return "Gobal"
         }
     }
 }

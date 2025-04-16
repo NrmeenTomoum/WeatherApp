@@ -47,7 +47,7 @@ final class NetworkManagerTests: XCTestCase {
           }
       }
       
-    struct MockModel: Decodable, Equatable {
+    struct MockModel: Codable, Equatable {
           let id: Int
           let name: String
       }
@@ -204,10 +204,15 @@ final class NetworkManagerTests: XCTestCase {
               session: mockSession,
               requestBuilder: mockRequestBuilder
           )
+          var parameters = [String: String]()
+          parameters["lat"] = "3456"
+          parameters["lon"] = "54678"
           
           let endpoint = MockEndpoint(
+            task: .url(parameters),
+            authenticationRequired: false,
               path: "/test",
-              method: .get,
+            method: .GET,
               headers: nil,
               queryParams: nil,
               body: nil
@@ -218,7 +223,7 @@ final class NetworkManagerTests: XCTestCase {
               let _: MockModel = try await networkManager.request(endpoint)
               XCTFail("Expected error for non-HTTP response")
           } catch let error as NetworkError {
-              XCTAssertEqual(error, NetworkError.serverError)
+              XCTAssertEqual(error.errorDescription, NetworkError.serverError.errorDescription)
           } catch {
               XCTFail("Expected NetworkError.serverError, but got: \(error)")
           }
@@ -247,10 +252,15 @@ final class NetworkManagerTests: XCTestCase {
               session: mockSession,
               requestBuilder: mockRequestBuilder
           )
+          var parameters = [String: String]()
+          parameters["lat"] = "3456"
+          parameters["lon"] = "54678"
           
           let endpoint = MockEndpoint(
+            task: .url(parameters),
+            authenticationRequired: false,
               path: "/test",
-              method: .get,
+              method: .GET,
               headers: nil,
               queryParams: nil,
               body: nil
@@ -261,8 +271,7 @@ final class NetworkManagerTests: XCTestCase {
               let _: MockModel = try await networkManager.request(endpoint)
               XCTFail("Expected error for empty response data")
           } catch {
-              // Success - error was thrown
-              // Specific error depends on how WeatherAppResponse handles empty data
+              
           }
       }
       
@@ -289,10 +298,15 @@ final class NetworkManagerTests: XCTestCase {
               session: mockSession,
               requestBuilder: mockRequestBuilder
           )
+          var parameters = [String: String]()
+          parameters["lat"] = "3456"
+          parameters["lon"] = "54678"
           
           let endpoint = MockEndpoint(
+            task: .url(parameters),
+            authenticationRequired: false,
               path: "/test",
-              method: .get,
+            method: .GET,
               headers: nil,
               queryParams: nil,
               body: nil
@@ -303,8 +317,6 @@ final class NetworkManagerTests: XCTestCase {
               let _: MockModel = try await networkManager.request(endpoint)
               XCTFail("Expected error for malformed JSON")
           } catch {
-              // Success - error was thrown
-              // You could add assertions about specific error types if needed
           }
       }
       
@@ -338,9 +350,15 @@ final class NetworkManagerTests: XCTestCase {
               requestBuilder: mockRequestBuilder
           )
           
+          var parameters = [String: String]()
+          parameters["lat"] = "3456"
+          parameters["lon"] = "54678"
+          
           let endpoint = MockEndpoint(
+            task: .url(parameters),
+            authenticationRequired: false,
               path: "/test",
-              method: .get,
+            method: .GET,
               headers: nil,
               queryParams: nil,
               body: nil
@@ -373,10 +391,15 @@ final class NetworkManagerTests: XCTestCase {
               session: mockSession,
               requestBuilder: mockRequestBuilder
           )
+          var parameters = [String: String]()
+          parameters["lat"] = "3456"
+          parameters["lon"] = "54678"
           
           let endpoint = MockEndpoint(
+            task: .url(parameters),
+            authenticationRequired: false,
               path: "/test",
-              method: .get,
+              method: .GET,
               headers: nil,
               queryParams: nil,
               body: nil

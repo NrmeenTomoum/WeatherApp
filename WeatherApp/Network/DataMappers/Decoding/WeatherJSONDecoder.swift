@@ -12,7 +12,7 @@ import Foundation
 public final class WeatherJSONDecoder: JSONDecoder {
     public init(_ decodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase) {
         super.init()
-        keyDecodingStrategy = decodingStrategy
+            //keyDecodingStrategy = decodingStrategy
         dateDecodingStrategy = .iso8601
     }
 

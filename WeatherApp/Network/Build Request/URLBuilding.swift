@@ -12,8 +12,8 @@ protocol URLBuilding {
 
 struct DefaultURLBuilder: URLBuilding {
     func buildURL(from endpoint: Endpoint) throws -> URL {
-        let fullURLString = Constant.baseURL + endpoint.path
-        guard var urlComponents = URLComponents(string: fullURLString) else {
+     
+        guard var urlComponents = URLComponents(string: endpoint.fullURL) else {
             throw NetworkError.invalidURL
         }
 

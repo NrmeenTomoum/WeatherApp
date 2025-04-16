@@ -28,22 +28,26 @@ extension WeatherEndpoint: Endpoint {
             var parameters = [String: String]()
                 parameters["lat"] = "\(weather.lat)"
                 parameters["lon"] = "\(weather.lon)"
+                parameters["appid"] = weather.appid
+                parameters["units"] = "metric"
             return .url(parameters)
             
         case .forecast5(let coordinates):
             var parameters = [String: String]()
                 parameters["lat"] = "\(coordinates.lat)"
                 parameters["lon"] = "\(coordinates.lon)"
+            //    parameters["appid"] = weather.appid
+
             return .url(parameters)
         }
     }
     
     var path: String {
         switch self {
-        case .current( let weather):
-            return "/weather?lat=\(weather.lat)&lon=\(weather.lon)&appid=\(weather.appid)"
-        case .forecast5(coordinates: let coord):
-            return "/forecast?lat=\(coord.lat)&lon=\(coord.lon)&appid=\(Constant.apiKey)"
+        case .current(_):
+            return "weather?"
+        case .forecast5(_):
+            return "forecast?"
         }
     }
 }
