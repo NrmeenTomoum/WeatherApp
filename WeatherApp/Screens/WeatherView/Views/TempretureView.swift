@@ -8,7 +8,7 @@ import SwiftUI
 
 struct TempretureView: View {
     var labelName: String
-    var temperature: Int
+    var temperature: String
     var body: some View {
         VStack (alignment: .center){
             Text("\(temperature)°")
@@ -22,5 +22,5 @@ struct TempretureView: View {
 }
 
 #Preview {
-    TempretureView(labelName: "min", temperature: 25)
+    TempretureView(labelName: "min", temperature: "25")
 }

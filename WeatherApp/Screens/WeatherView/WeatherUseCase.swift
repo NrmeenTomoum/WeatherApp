@@ -7,19 +7,20 @@
 
 import Foundation
 protocol WeatherUsecaseProtocol {
+    func execute() async throws -> WeatherResponse
 }
+
 class WeatherUsecase: WeatherUsecaseProtocol{
-    private var weatherRepo: WeatherRepoProtocol
-    var weatherRequest: WeatherRequest
+
+    var weatherRepo: WeatherRepoProtocol
     
-    init(weatherRepo: WeatherRepoProtocol = WeatherRepo(), weatherRequest: WeatherRequest ) {
+    init(weatherRepo: WeatherRepoProtocol = WeatherRepo()) {
         self.weatherRepo = weatherRepo
-        self.weatherRequest = weatherRequest
     }
     
      func execute() async throws -> WeatherResponse {
          do {
-            return  try await weatherRepo.getWeather(for: weatherRequest)
+            return  try await weatherRepo.getWeather()
          } catch  {
              throw WeatherError.decodingError(error)
          }

@@ -15,12 +15,12 @@ protocol NetworkProtocol {
 
 final class NetworkManager : NetworkProtocol {
     
-    private let session: URLSession
-    private let requestBuilder: RequestBuilder
+    private let session: URLSessionProtocol
+    private let requestBuilder: RequestBuilding
     
     init(
-        session: URLSession = .shared,
-        requestBuilder: RequestBuilder = RequestBuilder()
+        session: URLSessionProtocol = URLSession.shared,
+        requestBuilder: RequestBuilding = RequestBuilder()
     ) {
         self.session = session
         self.requestBuilder = requestBuilder
@@ -30,17 +30,15 @@ final class NetworkManager : NetworkProtocol {
         _ endpoint: Endpoint
     ) async throws -> T {
         let request = try requestBuilder.build(from: endpoint)
-        let (data, response) = try await session.data(for: request)
+        let (data, response) = try await session.data(for: request, delegate: nil)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.serverError
         }
         
-        let statusCode = httpResponse.statusCode
-        
         return try WeatherAppResponse(
             data: data,
-            statusCode: statusCode
+            statusCode: httpResponse.statusCode
         ).decode(as: T.self)
     }
 

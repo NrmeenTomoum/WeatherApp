@@ -8,8 +8,11 @@
 
 import Foundation
 import Foundation
+protocol RequestBuilding {
+    func build(from endpoint: Endpoint) throws -> URLRequest
+}
 
-struct RequestBuilder {
+struct RequestBuilder: RequestBuilding {
     private let urlBuilder: URLBuilding
     private let bodyBuilder: BodyBuilding
     private let headerBuilder: HeaderBuilding

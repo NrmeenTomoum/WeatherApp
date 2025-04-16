@@ -54,7 +54,7 @@ extension Endpoint {
     /// Base URL for calling endpoints which is configurable according to Build
     /// Configurations
     var baseURL: String {
-       Constant.apiKey
+        Constant.baseURL
     }
 
 //    var headers: HTTPHeaders {
@@ -85,7 +85,7 @@ extension Endpoint {
 //    }
 
     func defaultFullURL() -> String {
-        baseURL + "/\(version)/" + path
+        baseURL + "\(version)/" + path
     }
 }
 
