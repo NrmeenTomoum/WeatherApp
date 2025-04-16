@@ -31,3 +31,6 @@ class WeatherUsecase: WeatherUsecaseProtocol{
     case networkError(Error)
     case decodingError(Error)
 }
+
+
+
