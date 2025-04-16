@@ -39,7 +39,10 @@ class ForecastRepo: ForecastRepoProtocol {
      
      do {
          let weatherRequest = WeatherRequest(lat: location.lat, lon: location.lon, appid: Constant.apiKey)
-         return try await networkRepository.request(WeatherEndpoint.forecast5(weatherRequest))
+         
+         let forecast: ForecastResponse = try await networkRepository.request(WeatherEndpoint.forecast5(weatherRequest))
+         print(forecast)
+         return forecast
      } catch {
          throw error
      }

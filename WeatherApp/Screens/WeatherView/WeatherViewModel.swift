@@ -33,11 +33,12 @@ class WeatherViewModel {
                 
                 // Update UI properties safely
                 print(forecastResult.city.name)
-                listOfForecasts = forecastResult.list.map{ item in
+                
+                listOfForecasts = forecastResult.list.map { item in
                     let date = Date(timeIntervalSince1970: TimeInterval(item.dt))
                     return DailyWeatherModel(
                         name: date.dayOfWeek(),
-                        temperature: String(format: "%.2f", weatherResult.main.temp),
+                        temperature: String(format: "%.2f", item.main.temp),
                         weathertype: item.weather.first?.main ?? .none
                     )
                 }
