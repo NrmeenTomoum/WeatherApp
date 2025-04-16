@@ -6,7 +6,7 @@
 //
 enum WeatherEndpoint {
     case current(WeatherRequest)
-    case forecast5(Coord)
+    case forecast5(WeatherRequest)
 }
 
 extension WeatherEndpoint: Endpoint {
@@ -26,18 +26,18 @@ extension WeatherEndpoint: Endpoint {
         switch self {
         case .current(let weather):
             var parameters = [String: String]()
-                parameters["lat"] = "\(weather.lat)"
-                parameters["lon"] = "\(weather.lon)"
-                parameters["appid"] = weather.appid
-                parameters["units"] = "metric"
+            parameters["lat"] = "\(weather.lat)"
+            parameters["lon"] = "\(weather.lon)"
+            parameters["appid"] = weather.appid
+            parameters["units"] = "metric"
             return .url(parameters)
             
-        case .forecast5(let coordinates):
+        case .forecast5(let weather):
             var parameters = [String: String]()
-                parameters["lat"] = "\(coordinates.lat)"
-                parameters["lon"] = "\(coordinates.lon)"
-            //    parameters["appid"] = weather.appid
-
+            parameters["lat"] = "\(weather.lat)"
+            parameters["lon"] = "\(weather.lon)"
+            parameters["appid"] = weather.appid
+            parameters["units"] = "metric"
             return .url(parameters)
         }
     }

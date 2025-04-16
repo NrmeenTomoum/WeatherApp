@@ -36,11 +36,15 @@ struct WeatherView: View {
                 Divider()
                     .frame(height: 2)
                     .overlay(.white)
-                List (1 ..< 6){ _ in
-                    DailyWeatherRow(dailyWeatherModel: DailyWeatherModel(name: "wednesday", temperature: 20, weathertype: .sunny))
+                
+             
+                List(viewModel.listOfForecasts, id: \.id) { item in
+                    DailyWeatherRow(dailyWeatherModel: DailyWeatherModel(name: item.name, temperature: item.temperature, weathertype: item.weathertype))
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
                 }.listStyle(.plain)
+                      
+             
                 Spacer()
             }.background(viewModel.weatherType.backgroundcolor)
                 .ignoresSafeArea()

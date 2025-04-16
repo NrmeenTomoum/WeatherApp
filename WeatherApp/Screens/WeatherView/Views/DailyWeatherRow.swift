@@ -25,6 +25,6 @@ struct DailyWeatherRow : View {
 }
 
 #Preview {
-    DailyWeatherRow(dailyWeatherModel: DailyWeatherModel(name: "wednesday", temperature: 20, weathertype: .cloudy)).background(Color.gray)
+    DailyWeatherRow(dailyWeatherModel: DailyWeatherModel(name: "wednesday", temperature: "20", weathertype: .cloudy)).background(Color.gray)
 }
 
