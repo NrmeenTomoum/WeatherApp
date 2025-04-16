@@ -38,6 +38,7 @@ extension WeatherEndpoint: Endpoint {
             parameters["lon"] = "\(weather.lon)"
             parameters["appid"] = weather.appid
             parameters["units"] = "metric"
+            parameters["cnt"] = "5"
             return .url(parameters)
         }
     }
